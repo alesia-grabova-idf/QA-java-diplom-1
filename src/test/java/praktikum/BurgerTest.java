@@ -19,10 +19,11 @@ public class BurgerTest {
   public void setUp() {
     burger = new Burger();
     mockBun = mock(Bun.class);
+    when(mockBun.getName()).thenReturn("black bun");
+    when(mockBun.getPrice()).thenReturn(100.0f);
+
     mockIngredient1 = mock(Ingredient.class);
     mockIngredient2 = mock(Ingredient.class);
-
-    when(mockBun.getPrice()).thenReturn(100.0f);
     when(mockIngredient1.getPrice()).thenReturn(50.0f);
     when(mockIngredient2.getPrice()).thenReturn(75.0f);
 
@@ -39,8 +40,17 @@ public class BurgerTest {
 
   @Test
   public void getReceiptTest() {
+
+    when(mockIngredient1.getType()).thenReturn(IngredientType.SAUCE);
+    when(mockIngredient2.getType()).thenReturn(IngredientType.FILLING);
+    when(mockIngredient1.getName()).thenReturn("Test Sauce");
+    when(mockIngredient2.getName()).thenReturn("Test Filling");
+
     String receipt = burger.getReceipt();
-    assertTrue(receipt.contains("(===="));
-    assertTrue(receipt.contains("Price"));
+
+    assertTrue(receipt.contains("==== black bun ===="));
+    assertTrue(receipt.contains("= sauce Test Sauce ="));
+    assertTrue(receipt.contains("= filling Test Filling ="));
+    assertTrue(receipt.contains("Price:"));
   }
 }
