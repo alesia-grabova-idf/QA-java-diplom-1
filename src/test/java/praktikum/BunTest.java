@@ -17,5 +17,4 @@ public class BunTest {
     Bun bun = new Bun("Test Bun", 150.0f);
     assertEquals(150.0f, bun.getPrice(), 0.01);
   }
-
 }

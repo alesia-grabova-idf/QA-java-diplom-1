@@ -23,5 +23,4 @@ public class IngredientTest {
     Ingredient ingredient = new Ingredient(IngredientType.SAUCE, "Test Sauce", 50.0f);
     assertEquals(50.0f, ingredient.getPrice(), 0.01);
   }
-
 }
